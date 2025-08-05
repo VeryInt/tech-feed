@@ -127,47 +127,7 @@ export class HuggingFaceScraper {
         return papers
     }
 
-    private async extractAbstraction(
-        url: string,
-        c: Record<string, any>
-    ): Promise<{ abstract: string; date_published: string | null; author: string }> {
-        const res = await fetch(url)
-        let abstract = ''
-        let date_published: string | null = null
-        let authorList: string[] = []
-        await new HTMLRewriter()
-            .on('div.pb-8.pr-4.md\\:pr-16', {
-                text(text) {
-                    abstract += text.text
-                },
-            })
-            .on('div.pb-10.md\\:pt-3 .author span.contents', {
-                text(text) {
-                    if (text.text) {
-                        // remove \n and extra spaces
-                        const theAuthor = text.text.replace(/\n/g, '').trim()
-                        if (theAuthor) {
-                            authorList.push(theAuthor)
-                        }
-                    }
-                },
-            })
-            .on('time', {
-                element(element) {
-                    date_published = element.getAttribute('datetime')
-                },
-            })
-            .transform(res)
-            .arrayBuffer()
-        if (abstract.startsWith('Abstract\n')) {
-            abstract = abstract.substring('Abstract\n'.length)
-        }
-        abstract = abstract.replace(/\n/g, ' ').trim()
-        if (date_published && !(date_published as string).endsWith('Z')) {
-            date_published = `${date_published}Z`
-        }
-        return { abstract, date_published, author: authorList.join(', ').trim() }
-    }
+    
 
     generateRss(papers: Paper[]): string {
         const rssItems = papers

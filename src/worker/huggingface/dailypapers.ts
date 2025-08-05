@@ -41,7 +41,7 @@ export class HuggingFaceScraper {
         for (const paper of papers) {
             if (paper.url) {
                 try {
-                    const { abstract, date_published, author } = await this.extractAbstraction(paper.url, c)
+                    const { abstract, date_published, author } = await this.extractAbstraction(paper.url)
                     detailedPapers.push({ ...paper, abstract, date_published, author })
                 } catch (e) {
                     detailedPapers.push({ ...paper, abstract: '', date_published: null, author: '' })
@@ -51,8 +51,7 @@ export class HuggingFaceScraper {
         return detailedPapers
     }
     private async extractAbstraction(
-        url: string,
-        c: Record<string, any>
+        url: string
     ): Promise<{ abstract: string; date_published: string | null; author: string }> {
         const res = await fetch(url)
         let abstract = ''
