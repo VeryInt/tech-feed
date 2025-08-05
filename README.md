@@ -1,5 +1,7 @@
 # Tech Feed
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/VeryInt/tech-feed)
+
 [中文文档](./README_CN.md)
 
 This project is designed to scrape technology news from various sources and provide the data as a JSON API and RSS feeds. Currently, it supports fetching daily and trending papers from Hugging Face.

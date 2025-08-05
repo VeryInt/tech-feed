@@ -1,5 +1,7 @@
 # Tech Feed (科技信息流)
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/VeryInt/tech-feed)
+
 该项目旨在从各种来源抓取科技新闻，并以 JSON API 和 RSS 源的形式提供数据。目前，它支持从 Hugging Face 获取每日和热门论文。
 
 该应用程序使用轻量级 Web 框架 [Hono](https://hono.dev/) 构建，并部署在 [Cloudflare Workers](https://developers.cloudflare.com/workers/) 上。它利用 Cloudflare 强大的 `HTMLRewriter` 在边缘网络上直接进行高效的网页抓取。
