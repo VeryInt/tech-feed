@@ -1,52 +1,53 @@
-# React + Vite + Hono + Cloudflare Workers
+# Tech Feed
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
+[中文文档](./README_CN.md)
 
-This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
+This project is designed to scrape technology news from various sources and provide the data as a JSON API and RSS feeds. Currently, it supports fetching daily and trending papers from Hugging Face.
 
-![React + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
+The application is built using [Hono](https://hono.dev/), a lightweight web framework, and is intended to be deployed on [Cloudflare Workers](https://developers.cloudflare.com/workers/). It leverages Cloudflare's powerful `HTMLRewriter` for efficient web scraping directly on the edge.
 
-<!-- dash-content-start -->
+Due to its reliance on Cloudflare-specific APIs like `HTMLRewriter`, this project is exclusively designed for deployment on the Cloudflare platform.
 
-🚀 Supercharge your web development with this powerful stack:
+## Features
 
-- [**React**](https://react.dev/) - A modern UI library for building interactive interfaces
-- [**Vite**](https://vite.dev/) - Lightning-fast build tooling and development server
-- [**Hono**](https://hono.dev/) - Ultralight, modern backend framework
-- [**Cloudflare Workers**](https://developers.cloudflare.com/workers/) - Edge computing platform for global deployment
+- **JSON API**: Get structured data of scraped content.
+- **RSS Feeds**: Subscribe to your favorite tech news.
+- **Built for Cloudflare**: Optimized for performance and scalability on the Cloudflare network.
 
-### ✨ Key Features
+## Current Endpoints
 
-- 🔥 Hot Module Replacement (HMR) for rapid development
-- 📦 TypeScript support out of the box
-- 🛠️ ESLint configuration included
-- ⚡ Zero-config deployment to Cloudflare's global network
-- 🎯 API routes with Hono's elegant routing
-- 🔄 Full-stack development setup
-- 🔎 Built-in Observability to monitor your Worker
+The following endpoints are currently available, routed under the `/huggingface` path:
 
-Get started in minutes with local development or deploy directly via the Cloudflare dashboard. Perfect for building modern, performant web applications at the edge.
+### Hugging Face Daily Papers
 
-<!-- dash-content-end -->
+-   **JSON**: `/huggingface/dailypapers`
+-   **RSS**: `/huggingface/dailypapers/rss`
+
+### Hugging Face Trending Papers
+
+-   **JSON**: `/huggingface/trendingpapers`
+-   **RSS**: `/huggingface/trendingpapers/rss`
 
 ## Getting Started
 
-To start a new project with this template, run:
+### Prerequisites
 
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
-```
+-   [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
+-   A [Cloudflare account](https://dash.cloudflare.com/sign-up)
 
-A live deployment of this template is available at:
-[https://react-vite-template.templates.workers.dev](https://react-vite-template.templates.workers.dev)
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository-url>
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Rename `wrangler.toml.example` to `wrangler.toml` and update it with your Cloudflare account details.
 
 ## Development
-
-Install dependencies:
-
-```bash
-npm install
-```
 
 Start the development server with:
 
@@ -54,37 +55,15 @@ Start the development server with:
 npm run dev
 ```
 
-Your application will be available at [http://localhost:5173](http://localhost:5173).
+Your application will be available at [http://localhost:5173](http://localhost:5173). The frontend is a simple React application for potential future UI, while the worker endpoints can be tested with tools like `curl` or Postman.
 
-## Production
+## Deployment
 
-Build your project for production:
-
-```bash
-npm run build
-```
-
-Preview your build locally:
-
-```bash
-npm run preview
-```
-
-Deploy your project to Cloudflare Workers:
-
-```bash
-npm run build && npm run deploy
-```
-
-Monitor your workers:
-
-```bash
-npx wrangler tail
-```
-
-## Additional Resources
-
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://reactjs.org/)
-- [Hono Documentation](https://hono.dev/)
+1.  Build the project for production:
+    ```bash
+    npm run build
+    ```
+2.  Deploy to Cloudflare Workers:
+    ```bash
+    npm run deploy
+    ```
