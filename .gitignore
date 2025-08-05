@@ -1,0 +1,46 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# wrangler files
+.wrangler
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Secrets and sensitive files
+*.key
+*.pem
+secrets/
+*.secret
+
+wrangler.json
+wrangler.toml
+wrangler.dev.toml
