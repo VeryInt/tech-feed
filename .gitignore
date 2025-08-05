@@ -41,6 +41,6 @@ dist-ssr
 secrets/
 *.secret
 
-wrangler.json
-wrangler.toml
-wrangler.dev.toml
+# wrangler.json
+# wrangler.toml
+# wrangler.dev.toml
