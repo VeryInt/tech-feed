@@ -173,17 +173,14 @@ function setTempPaper({
     tempPaper: Partial<Paper>
     papers: Paper[]
 } {
-    if (paperItem.media) {
-        tempPaper.media = tempPaper?.media?.length ? [...tempPaper.media, ...paperItem.media] : paperItem.media
-    }
-    if (paperItem.url) {
-        tempPaper.url = paperItem.url
-    }
     if (paperItem.title) {
         tempPaper.title = paperItem.title
     }
     if (paperItem.abstract) {
         tempPaper.abstract = paperItem.abstract
+    }
+    if (paperItem.url) {
+        tempPaper.url = paperItem.url
     }
     if (paperItem.github_url) {
         tempPaper.github_url = paperItem.github_url
@@ -193,6 +190,9 @@ function setTempPaper({
     }
     if (paperItem.upvotes) {
         tempPaper.upvotes = paperItem.upvotes
+    }
+    if (paperItem.media) {
+        tempPaper.media = tempPaper?.media?.length ? [...tempPaper.media, ...paperItem.media] : paperItem.media
     }
     if (
         tempPaper.url &&
